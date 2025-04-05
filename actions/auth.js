@@ -69,3 +69,48 @@ export const getCurrentUser = async () => {
     return user;
 
 }
+
+export const sendPasswordResetEmail = async ({ email }) => {
+    const supabase = await createClient();
+    
+    // Get the origin safely
+    const origin = (await headers()).get("origin") || process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
+    // Send reset email with redirect link
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${origin}/reset-password`,
+    });
+
+    if (error) {
+        console.error("Error sending reset email:", error);
+        return { status: "error", message: error.message };
+    }
+
+    return { status: "success", message: "Reset Email sent!" };
+};
+
+
+export const resetPassword = async ({ password, code }) => {
+    const supabase = await createClient();
+    if (!code) {
+        return { status: "error", message: "Invalid or missing reset code." };
+    }
+    console.log("Reset code received:", code);
+
+
+    // Exchange the reset token (code) for a session
+    const { error: codeError } = await supabase.auth.exchangeCodeForSession(code);
+    if (codeError) {
+        console.error("Code exchange error:", codeError);
+        return { status: "error", message: codeError.message };
+    }
+
+    // Update the user's password
+    const { error } = await supabase.auth.updateUser({ password });
+    if (error) {
+        console.error("Password update error:", error);
+        return { status: "error", message: error.message };
+    }
+
+    return { status: "success", message: "Password reset successfully" };
+};

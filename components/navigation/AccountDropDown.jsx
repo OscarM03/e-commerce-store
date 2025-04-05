@@ -11,7 +11,7 @@ import Link from "next/link";
 // import { useEffect, useState } from "react";
 
 const AccountDropDown = () => {
-    // const [user, setUser] = useState(null);
+    const [user, setUser] = useState(null);
     // const supabase = createClient();
 
     // useEffect(() => {

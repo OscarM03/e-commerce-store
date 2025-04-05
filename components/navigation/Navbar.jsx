@@ -2,14 +2,13 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import AccountDropDown from './AccountDropDown'
 
 import searchIcon from '/public/assets/icons/search.png';
 import closeIcon from '/public/assets/icons/close.png';
 import cartIcon from '/public/assets/icons/cart.png';
 import rightArrow from '/public/assets/icons/right-arrow.png';
-import { createClient } from '@/utils/supabase/client';
 
 const categories = ["Apple", "Samsung", "Xiaomi", "Redmi", "Headphones", "Earpods", "Laptops", "Accessories"];
 

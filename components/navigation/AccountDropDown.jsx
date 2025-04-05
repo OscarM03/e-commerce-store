@@ -1,4 +1,3 @@
-import { signOut } from "@/actions/auth";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -7,35 +6,34 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { createClient } from "@/utils/supabase/client";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
 const AccountDropDown = () => {
-    const [user, setUser] = useState(null);
-    const supabase = createClient();
+    // const [user, setUser] = useState(null);
+    // const supabase = createClient();
 
-    useEffect(() => {
-        const fetchUser = async () => {
-            try {
-                const { data: { user } } = await supabase.auth.getUser();
-                setUser(user)
-            } catch (error) {
-                console.error("Error fetching user", error);
-            }
-        }
-        fetchUser()
-    }, [])
+    // useEffect(() => {
+    //     const fetchUser = async () => {
+    //         try {
+    //             const { data: { user } } = await supabase.auth.getUser();
+    //             setUser(user)
+    //         } catch (error) {
+    //             console.error("Error fetching user", error);
+    //         }
+    //     }
+    //     fetchUser()
+    // }, [])
 
-    const handleLogout = async () => {
-        try {
-            await signOut();
-            setUser(null);
-        } catch (error) {
-            console.error("Logout error:", error);
-        }
-    };
+    // const handleLogout = async () => {
+    //     try {
+    //         await signOut();
+    //         setUser(null);
+    //     } catch (error) {
+    //         console.error("Logout error:", error);
+    //     }
+    // };
 
     return (
         <DropdownMenu>
@@ -57,7 +55,7 @@ const AccountDropDown = () => {
                 <DropdownMenuItem className="hover:bg-gray-100 hover:text-primary cursor-pointer">Profile</DropdownMenuItem>
                 {user ? (
                     <DropdownMenuItem
-                        onClick={handleLogout}
+                        // onClick={handleLogout}
                         className="hover:bg-gray-100 hover:text-primary cursor-pointer">Logout</DropdownMenuItem>
                 ) : (
                     <>

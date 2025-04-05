@@ -51,8 +51,8 @@ const AccountDropDown = () => {
                 </div>
             </DropdownMenuTrigger>
 
-            <DropdownMenuContent align="center" side="bottom" className="w-36">
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuContent align="center" side="bottom" className="w-36 bg-white">
+                <DropdownMenuLabel className="font-medium">My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem className="hover:bg-gray-100 hover:text-primary cursor-pointer">Profile</DropdownMenuItem>
                 {user ? (
